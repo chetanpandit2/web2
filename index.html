@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./msmm.png" type="image/x-icon" />
+    <title>コンピューターエラー02V7HGTVB</title>
+    <style>
+      #gifImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-ZBR3EMWN95"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-ZBR3EMWN95");
+  </script>
+  <body>
+    <img id="gifImage" src="./ppt.jpg" alt="GIF Image" />
+
+    <audio autoplay="" id="pridez">
+      <source src="_Fm7-alert.mp3" type="audio/mp3" />
+
+      <source src="yaketsuku.mp3" type="audio/mp3" />
+    </audio>
+
+    <audio autoplay="" id="pridez1">
+      <source src="yaketsuku.mp3" type="audio/mp3" />
+    </audio>
+    <script>
+      function _ply_snd() {
+        var audio1 = document.getElementById("pridez1");
+        var audio2 = document.getElementById("pridez");
+
+        // Start the audio loop every 500 milliseconds
+        audio2.play();
+        var intervalId = setInterval(function () {
+          audio1.play();
+        }, 500);
+      }
+    </script>
+    <script>
+      const gifImage = document.getElementById("gifImage");
+      const fullscreenSound = document.getElementById("fullscreenSound");
+      let escKeyHoldTimer; // Timer for holding the Escape key
+      const ESCAPE_HOLD_DURATION = 2000; // Hold duration in milliseconds (2 seconds)
+
+      // Function to change GIF image
+      function changeGif() {
+        gifImage.src = "./buff.gif";
+
+        _ply_snd();
+        enterFullScreen(); // Enter full screen when changing GIF
+      }
+
+      // Function to enter full screen
+      function enterFullScreen() {
+        const element = document.documentElement;
+        if (element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+          /* Firefox */
+          element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) {
+          /* Chrome, Safari and Opera */
+          element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) {
+          /* IE/Edge */
+          element.msRequestFullscreen();
+        }
+      }
+
+      // Play sound after entering full screen
+      function playFullscreenSound() {
+        fullscreenSound.play();
+      }
+
+      // Prevent user from exiting full screen
+      function preventExitFullScreen() {
+        document.addEventListener("fullscreenchange", () => {
+          if (!document.fullscreenElement) {
+            enterFullScreen(); // Re-enter full screen if user attempts to exit
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            startEscKeyHoldTimer(); // Start the timer when the Escape key is pressed
+          }
+        });
+
+        document.addEventListener("keyup", (event) => {
+          if (event.key === "Escape") {
+            resetEscKeyHoldTimer(); // Reset the timer when the Escape key is released
+          }
+        });
+      }
+
+      // Function to start the timer when the Escape key is pressed
+      function startEscKeyHoldTimer() {
+        escKeyHoldTimer = setTimeout(() => {
+          resetEscKeyHoldTimer();
+          exitFullScreen();
+        }, ESCAPE_HOLD_DURATION);
+      }
+
+      // Function to reset the timer when the Escape key is released
+      function resetEscKeyHoldTimer() {
+        clearTimeout(escKeyHoldTimer);
+      }
+
+      // Function to exit full screen
+      function exitFullScreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          /* Firefox */
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          /* Chrome, Safari and Opera */
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          /* IE/Edge */
+          document.msExitFullscreen();
+        }
+      }
+
+      // Prevent user from closing browser tab
+      window.addEventListener("beforeunload", function (e) {
+        e.preventDefault();
+        e.returnValue = ""; // Prompt user before closing the tab
+      });
+
+      // Event listener to change GIF on click
+      gifImage.addEventListener("click", changeGif);
+
+      // Enter full screen and set up full-screen behavior on page load
+      window.onload = function () {
+        playFullscreenSound();
+        preventExitFullScreen();
+        enterFullScreen(); // Ensure full screen is entered on page load
+      };
+    </script>
+    <script src="./esc.js"></script>
+    <script src="./fulls.js"></script>
+  </body>
+</html>
